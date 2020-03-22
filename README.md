@@ -1,8 +1,10 @@
-# hash-music
+# HashMusic
 
-Plays randomly pitched fz at random intervals for your infinite enjoyment\
+Music generated from the hash of the submitted string!
 
-[live demo](https://strawstack.github.com/InteractiveArt/hash-music)
+# Live Demo
+
+[View Live Demo](#)
 
 # Resources
 
