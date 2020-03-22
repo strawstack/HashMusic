@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- sha256 -->
+<script src="sha256.js"></script>
+
+</head>
+<body>
+
+<p>Input word</p>
+<input id="in"></input>
+<button onclick="submit_word();">Submit</button>
+<p id="out"></p>
+
+<script>
+
+// one context per document
+/*
+
+
+var up = 3000;
+var lower = 100;
+
+function change(){
+  osc.frequency.value = Math.floor(Math.random() * (up - lower) + lower);
+  $("#out").html(osc.frequency.value);
+  setTimeout(change, Math.random() * 750 + 100);
+}
+*/
+
+var context = new (window.AudioContext || window.webkitAudioContext)();
+var osc = context.createOscillator(); // instantiate an oscillator
+osc.type = 'sine'; // this is the default - also square, sawtooth, triangle
+osc.frequency.value = 0; // Hz
+osc.connect(context.destination); // connect it to the destination
+//osc.start(); // start the oscillator
+
+var noisechart = {
+  "0": 200,
+  "1": 300,
+  "2": 400,
+  "3": 500,
+  "4": 600,
+  "5": 700,
+  "6": 800,
+  "7": 900,
+  "8": 1000,
+  "9": 1100,
+  "10": 1200,
+  "a": 1300,
+  "b": 1400,
+  "c": 1500,
+  "d": 1600,
+  "e": 1700,
+  "f": 1800
+}
+
+
+function makenoise( str ){
+  console.log( str );
+
+  // set noise to first char and begin playing
+  osc.frequency.value = noisechart[ str[0] ]; // Hz
+
+  // if chars left que them to play
+  if( str.length >= 2 ){
+    setTimeout(function(){
+        makenoise( str.slice(1, str.length) );
+    }, 100);
+
+  // if no chars left end the sound
+  }else{
+    setTimeout(function(){
+      osc.frequency.value = 0;
+    }, 200);
+  }
+}
+
+// Enter pressed or submit clicked
+//
+function submit_word(){
+  // get string from input
+  var word = $("#in").val();
+
+  // hash string with JS 256 lib
+  word = sha256(word).toString();
+
+  // send string to noise function
+  try{
+    osc.start();
+  }catch(e){
+    
+  }
+
+  makenoise( word );
+}
+
+$("#in").keypress(function(e){
+  if(e.which == 13){ submit_word(); }
+
+});
+
+</script>
+</body></html>
