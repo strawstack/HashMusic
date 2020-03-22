@@ -8,4 +8,4 @@ Music generated from the hash of the submitted string!
 
 # Resources
 
-[emn178/js-sha256](https://github.com/emn178/js-sha256/edit/master/src/sha256.js)
+[emn178/js-sha256](https://github.com/emn178/js-sha256)
