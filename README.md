@@ -4,7 +4,7 @@ Music generated from the hash of the submitted string!
 
 # Live Demo
 
-[View Live Demo](https://regularmemory.blog/HashMusic/)
+[View Live Demo](https://strawstack.github.io/HashMusic/)
 
 # Resources
 
